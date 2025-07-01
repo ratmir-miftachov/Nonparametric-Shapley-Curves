@@ -1,6 +1,6 @@
 # Shapley Curves: A Smoothing Perspective
 
-This repository contains the implementation code for the paper ["Shapley Curves: A Smoothing Perspective"](https://www.tandfonline.com/doi/full/10.1080/07350015.2024.2365781), which is published in the Journal of Business and Economic Statistics.
+This repository contains the implementation code for the paper ["Shapley Curves: A Smoothing Perspective"](https://www.tandfonline.com/doi/full/10.1080/07350015.2024.2365781), published in the Journal of Business and Economic Statistics.
 
 ## Abstract
 
@@ -61,6 +61,9 @@ shapley_curves = estimator.estimate_all_curves(evaluation_points)
 for variable, curve in shapley_curves.items():
     print(f"Shapley curve for {variable}: range [{np.min(curve):.3f}, {np.max(curve):.3f}]")
 ```
+
+## Note
+The original code of the paper has been written in R. For experimental reasons, I have translated the R code to Python using Cursor and the model Claude-4-Sonnet (thinking). It took around 6 hours of iteration, and is still, in my opinion, still not perfectly aligned with the original R version.
 
 ## Contact
 
