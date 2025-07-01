@@ -1,0 +1,87 @@
+# Shapley Curves: A Smoothing Perspective
+
+This repository contains the implementation code for the paper ["Shapley Curves: A Smoothing Perspective"](https://www.tandfonline.com/doi/full/10.1080/07350015.2024.2365781) by Ratmir Miftachov, Georg Keilbar, and Wolfgang Karl Härdle.
+
+## Abstract
+
+This article fills the limited statistical understanding of Shapley values as a variable importance measure from a nonparametric (or smoothing) perspective. We introduce population-level Shapley curves to measure the true variable importance, determined by the conditional expectation function and the distribution of covariates. Having defined the estimand, we derive minimax convergence rates and asymptotic normality under general conditions for the two leading estimation strategies. For finite sample inference, we propose a novel version of the wild bootstrap procedure tailored for capturing lower-order terms in the estimation of Shapley curves. Numerical studies confirm our theoretical findings, and an empirical application analyzes the determining factors of vehicle prices.
+
+## Visualization
+
+The package provides extensive visualization capabilities for exploring Shapley curves, including 3D surface plots, sequence plots with filled areas, and application-specific visualizations for real-world data analysis.
+
+### Shapley Curve Comparison
+
+<div align="center">
+
+| Component 1 | Component 2 |
+|-------------|-------------|
+| ![Component 1](R/visualization/surface_plots/comp1.png) | ![Component 2](R/visualization/surface_plots/comp2.png) |
+
+</div>
+
+*Comparison of estimation methods: Blue curves represent component-based estimation, red curves represent integration-based estimation.*
+
+## Repository Structure
+
+```
+Nonparametric-Shapley-Curves/
+├── README.md                   # Documentation
+├── R/                         # Original R implementation
+│   ├── src/                   # Core R algorithms and utilities
+│   ├── experiments/           # Simulation studies and applications
+│   └── visualization/         # Plot generation
+└── python/                    # Python translation
+    ├── src/                   # Core Python implementation
+    ├── experiments/           # Research framework
+    ├── results/               # Output storage
+    └── demo_complete_integration.py
+```
+
+
+## Usage
+
+
+### Python Version  
+```python
+import numpy as np
+import pandas as pd
+import sys
+sys.path.append('./python')
+from src.algorithms import ShapleyEstimator
+
+# Generate sample data
+np.random.seed(42)
+X = pd.DataFrame({
+    'X1': np.random.normal(0, 1, 100),
+    'X2': np.random.normal(0, 1, 100), 
+    'X3': np.random.normal(0, 1, 100)
+})
+y = -np.sin(2*X['X1']) + 0.5*X['X2']**2 + 0.3*X['X3'] + 0.1*np.random.normal(0, 1, 100)
+
+# Create and fit Shapley estimator
+estimator = ShapleyEstimator(
+    kernel='gau',        # Gaussian kernel
+    bandwidth='cv_ls',   # Cross-validation bandwidth selection
+    reg_type='ll'        # Local linear regression
+)
+estimator.fit(X, y)
+
+# Define evaluation points for Shapley curves
+evaluation_points = {}
+for col in X.columns:
+    evaluation_points[col] = np.linspace(X[col].quantile(0.1), X[col].quantile(0.9), 20)
+
+# Estimate Shapley curves for all variables
+shapley_curves = estimator.estimate_all_curves(evaluation_points)
+
+# Display results
+for variable, curve in shapley_curves.items():
+    print(f"Shapley curve for {variable}: range [{np.min(curve):.3f}, {np.max(curve):.3f}]")
+```
+
+## Contact
+
+**Ratmir Miftachov**: contact[at]miftachov.com  
+**Georg Keilbar**: keilbar[at]hu-berlin.de  
+**Wolfgang Karl Härdle**: haerdle[at]hu-berlin.de 
