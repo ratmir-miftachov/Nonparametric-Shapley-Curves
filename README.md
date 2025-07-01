@@ -1,16 +1,13 @@
 # Shapley Curves: A Smoothing Perspective
 
-This repository contains the implementation code for the paper ["Shapley Curves: A Smoothing Perspective"](https://www.tandfonline.com/doi/full/10.1080/07350015.2024.2365781) by Ratmir Miftachov, Georg Keilbar, and Wolfgang Karl Härdle.
+This repository contains the implementation code for the paper ["Shapley Curves: A Smoothing Perspective"](https://www.tandfonline.com/doi/full/10.1080/07350015.2024.2365781), which is published in the Journal of Business and Economic Statistics.
 
 ## Abstract
 
 This article fills the limited statistical understanding of Shapley values as a variable importance measure from a nonparametric (or smoothing) perspective. We introduce population-level Shapley curves to measure the true variable importance, determined by the conditional expectation function and the distribution of covariates. Having defined the estimand, we derive minimax convergence rates and asymptotic normality under general conditions for the two leading estimation strategies. For finite sample inference, we propose a novel version of the wild bootstrap procedure tailored for capturing lower-order terms in the estimation of Shapley curves. Numerical studies confirm our theoretical findings, and an empirical application analyzes the determining factors of vehicle prices.
 
-## Visualization
 
-The package provides extensive visualization capabilities for exploring Shapley curves, including 3D surface plots, sequence plots with filled areas, and application-specific visualizations for real-world data analysis.
-
-### Shapley Curve Comparison
+### Shapley Curves
 
 <div align="center">
 
@@ -20,23 +17,8 @@ The package provides extensive visualization capabilities for exploring Shapley 
 
 </div>
 
-*Comparison of estimation methods: Blue curves represent component-based estimation, red curves represent integration-based estimation.*
+*Comparison of estimation methods for the first two components of the Shapley decomposition: Blue curves represent component-based estimation, red curves represent integration-based estimation.*
 
-## Repository Structure
-
-```
-Nonparametric-Shapley-Curves/
-├── README.md                   # Documentation
-├── R/                         # Original R implementation
-│   ├── src/                   # Core R algorithms and utilities
-│   ├── experiments/           # Simulation studies and applications
-│   └── visualization/         # Plot generation
-└── python/                    # Python translation
-    ├── src/                   # Core Python implementation
-    ├── experiments/           # Research framework
-    ├── results/               # Output storage
-    └── demo_complete_integration.py
-```
 
 
 ## Usage
