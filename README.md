@@ -63,7 +63,7 @@ for variable, curve in shapley_curves.items():
 ```
 
 ## Note
-The original code of the paper has been written in R. For experimental reasons, I have translated the R code to Python using Cursor and the model Claude-4-Sonnet (thinking). It took around 6 hours of iteration, and is still, in my opinion, not perfectly aligned with the original R version.
+The original code of the paper has been written in R. For experimental reasons, I have translated the R code to Python using Cursor and the model Claude-4-Sonnet (thinking). It took around 6 hours of iteration, and it is, in my opinion, still not perfectly aligned with the original R version.
 
 ## Contact
 
